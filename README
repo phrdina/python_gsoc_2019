@@ -1,0 +1,53 @@
+Implement a library and executable program in one file "rates.py"
+that will convert currencies.
+
+The program will use "rates.convert()" function and will accept these
+parameters:
+
+    -b --base: the base currency to convert from, required
+    -c --currency: the currency to convert to, required,
+                   can be specified multiple times
+    -d --date: the date of the exchange rates in format YYYY-MM-DD,
+               optional, if it's not specified use the current date
+
+    N: number which will be converted, required, can be specified
+       multiple times
+
+and it will print the result to the stdout in this format.
+
+Some examples:
+
+$ ./rates.py -b EUR -c USD -d 2019-04-20 10
+10.00 EUR is 11.25 USD
+
+$ ./rates.py -b EUR -c USD -c CNY -d 2019-04-20 10 20
+10.00 EUR is 11.25 USD
+20.00 EUR is 22.50 USD
+10.00 EUR is 75.45 CNY
+20.00 EUR is 150.89 CNY
+
+It should be possible to import the "rates.py" file as well as run
+it directly.
+
+In order to validate this exercise you should install python3-pytest
+and run "./exercise.py".
+
+As a data source for exchange rates you can use https://exchangeratesapi.io/
+which has simple API.  To get rates for specific date you will simply get:
+
+    https://api.exchangeratesapi.io/2010-01-12
+
+There are optional parameters which you will need to use:
+
+    base: the base currency
+    symbols: the currencies to get exchange rates from base
+
+The URL can look like this:
+
+    https://api.exchangeratesapi.io/2010-01-12?base=USD&symbols=EUR
+
+Hint: you can use requests module to do the HTTP communication.
+
+As the webpage states the library should cache the downloaded rates,
+it's good enough to cache it only in memory, as a bonus you can do file
+caching.
